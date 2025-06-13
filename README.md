@@ -1,54 +1,97 @@
+# Toothbrush Anomaly Detection
 
-# InspectorsAlly
+This project is designed to detect anomalies in toothbrush images using machine learning. It leverages a model trained with **Teachable Machine** and integrates it into a **Streamlit** application for real-time detection.
 
-## Boost Your Quality Control with InspectorsAlly - The Ultimate AI-Powered Inspection App
 
-InspectorsAlly is a powerful AI-powered application designed to help businesses streamline their quality control inspections. With InspectorsAlly, companies can ensure that their products meet the highest standards of quality, while reducing inspection time and increasing efficiency.
+## Key Features
 
-This advanced inspection app uses state-of-the-art computer vision algorithms and machine learning models to perform visual quality control inspections with unparalleled accuracy and speed. InspectorsAlly is capable of identifying even the slightest defects, such as scratches, dents, discolorations, and more.
+- **Anomaly Detection Model**:  
+  Trained using Google's Teachable Machine — a no-code platform — for easy creation and export of machine learning models.
+  
+- **Streamlit Web App**:  
+  A user-friendly interface allowing users to upload toothbrush images and receive real-time predictions.
 
-InspectorsAlly is easy to use, with a simple and intuitive interface that allows users to set up their inspection criteria quickly and easily. The application can be customized to fit the specific needs of any industry, with the ability to set inspection thresholds and adjust parameters as needed.
+- **Live Camera Feed (Bonus Feature)**:  
+  Integrated webcam functionality to continuously monitor toothbrushes for anomalies in real-time.
 
-With InspectorsAlly, businesses can optimize their quality control process and ensure that their products meet the highest standards of quality. Say goodbye to time-consuming and error-prone manual inspections and hello to faster, more accurate, and more efficient quality control inspections with InspectorsAlly.
+- **Anomaly Classification**:  
+  The model classifies toothbrush images as either **'Normal'** or **'Defective'** based on visual defects like cracks, missing parts, or damaged bristles.
 
-<br>
-<hr>
-<br>
+---
 
-## ⭐ Anomaly Detection Dataset 
+## Project Flow
 
-> ### ⭐ Dataset Download Link: https://www.mvtec.com/company/research/datasets/mvtec-ad
-This is a 400-image dataset, that contains images of good items (labeled as class ‘Good’) and items with a defect (labeled as class ‘Anomaly’). Dataset is imbalanced — with more samples of good images than defective ones. Item in the image may be literally of any type and complexity — bottle, cable, pill, tile, leather, zipper, etc. Below is an example of how the dataset may look like.
+### 1. Model Training
+- A dataset of toothbrush images is used to train the model.
+- Images are classified into two categories:  
+  - **Normal**: Defect-free toothbrushes.  
+  - **Defective**: Toothbrushes with visible defects (e.g., cracks, missing bristles, damaged parts).
 
-![sample dataset images](docs/overview_dataset.jpg)
+### 2. Model Export
+- After training, the model is exported from Teachable Machine.
+- The exported model (`keras_model.h5`) is integrated into a Streamlit application for deployment.
 
-<br>
-<hr>
-<br>
+### 3. Streamlit Application
+- **Upload Image**:  
+  Users can upload a toothbrush image, and the model will predict its status.
 
-## ⭐ Development References:
-1. https://www.analyticsvidhya.com/blog/2021/06/transfer-learning-using-vgg16-in-pytorch/
-2. https://blog.paperspace.com/vgg-from-scratch-pytorch/
+- **Live Camera Feed**:  
+  Users can activate their webcam to scan toothbrushes continuously and detect anomalies in real-time.
 
-<br>
-<hr>
-<br>
+---
 
-## ⭐ Streamlit Deployment Configurations:
+## Installation Requirements
+
+Make sure you have the following installed:
+
+- Python 3.x
+- [Streamlit](https://streamlit.io/)
+- Keras (with TensorFlow backend)
+- OpenCV (for webcam integration)
+- Exported Teachable Machine model (`model/keras_model.h5`)
+
+You can install the required Python libraries with:
+
+```bash
+pip install streamlit keras tensorflow opencv-python
 ```
-[theme]
-base="dark"
 
-[browser]
-gatherUsageStats = false
+---
+
+## Model Description
+
+- **Training Method**:  
+  Trained using **Teachable Machine** with a custom dataset of toothbrush images.
+
+- **Data**:  
+  Two categories — **Normal** and **Defective** toothbrush images.
+
+- **Model Type**:  
+  Convolutional Neural Network (CNN) — ideal for image classification tasks.
+
+---
+
+## Usage
+
+### Upload Image
+1. Launch the Streamlit app.
+2. Select the **Upload Image** option.
+3. Upload an image of a toothbrush.
+4. The app will display whether the toothbrush is **Normal** or **Defective**.
+
+### Live Camera Feed (Bonus)
+1. Launch the Streamlit app.
+2. Check the **Start Camera** option to enable your webcam.
+3. Show the toothbrush to the camera for real-time anomaly detection.
+
+---
+
+## Project Structure
+
+```bash
+├── app.py                    # Streamlit app file
+├── model/
+│   └── keras_model.h5         # Trained model exported from Teachable Machine
+├── README.md                  # Project documentation
+├── requirements.txt           # List of required packages (optional)
 ```
-<br>
-<hr>
-<br>
-
-## ⭐ Deployment References:
-1. https://30days.streamlit.app/
-2. https://docs.streamlit.io/streamlit-community-cloud/get-started/deploy-an-app
-3. https://streamlit-cloud-example-apps-streamlit-app-sw3u0r.streamlit.app/?hsCtaTracking=28f10086-a3a5-4ea8-9403-f3d52bf26184|22470002-acb1-4d93-8286-00ee4f8a46fb
-4. https://docs.streamlit.io/library/advanced-features/configuration
-
